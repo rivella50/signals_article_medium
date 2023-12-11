@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:signals_article/feature/posts/presentation/posts_controller.dart';
-import 'package:signals_article/feature/posts/presentation/posts_widget.dart';
+import 'package:signals_article/feature/posts/presentation/future/posts_widget.dart';
+import 'package:signals_article/feature/posts/presentation/stream/posts_stream_widget.dart';
 
 final getIt = GetIt.instance;
 
@@ -52,7 +53,13 @@ class MyHomePage extends StatelessWidget {
               ),
               child: Padding(
                 padding: EdgeInsets.all(20),
-                child: PostsWidget(),
+                child: Column(
+                  children: [
+                    PostsWidget(),
+                    Divider(),
+                    PostsStreamWidget(),
+                  ],
+                ),
               ),
             ),
           ),

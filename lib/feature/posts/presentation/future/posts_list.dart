@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:signals_article/feature/posts/domain/post.dart';
-import 'package:signals_article/feature/posts/presentation/post_widget.dart';
+import 'package:signals_article/feature/posts/presentation/future/post_widget.dart';
 
 class PostsList extends StatelessWidget {
   PostsList({
@@ -14,6 +14,7 @@ class PostsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return PostWidget(
           post: posts[index],
