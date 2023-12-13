@@ -8,6 +8,7 @@ class PostsStreamWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = getIt.get<PostsController>();
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -19,13 +20,13 @@ class PostsStreamWidget extends StatelessWidget {
               onPressed: () =>
                   //getIt.get<PostsController>().postsStreamSignal.value != null
                   //  ? null
-                  getIt.get<PostsController>().startPostsStream(),
+                controller.startPostsStream(),
               child: const Text('Start Posts Stream')),
           const SizedBox(
             height: 20,
           ),
           Watch(
-            (context) => getIt.get<PostsController>().postsStreamSignal.map(
+            (context) => controller.postsStreamSignal.map(
               value: (value) {
                 print('value:$value');
                 return Text(
@@ -47,7 +48,7 @@ class PostsStreamWidget extends StatelessWidget {
               },
               reloading: (val) {
                 print('reloading');
-                return const CircularProgressIndicator();
+                return const CircularProgressIndicator(color: Colors.red,);
               },
             ),
           ),

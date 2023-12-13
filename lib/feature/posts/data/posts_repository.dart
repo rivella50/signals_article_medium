@@ -14,14 +14,7 @@ class PostsRepository with TaskChains {
     ).chainEither(errorOrBody).chainEither(errorOrPosts);
   }
 
-  Stream<Post> getPostsStream(int count) async* {
-    try {
-      for (int i = 1; i <= count; i++) {
-        await Future.delayed(const Duration(seconds: 1));
-        yield Post(id: i, title: 'Post $i');
-      }
-    }finally {
-      print('ended stream');
-    }
+  Stream<Post> getPostsStream(int count) {
+    return Stream.periodic(const Duration(seconds: 1), (e) => Post(id: e+1, title: 'Post ${e+1}')).take(count);
   }
 }
