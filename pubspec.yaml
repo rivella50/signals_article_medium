@@ -14,7 +14,7 @@ dependencies:
   fpdart: ^1.1.0
   json_annotation: ^4.8.1
   dio: ^5.4.0
-  signals: ^2.0.0
+  signals: ^2.0.2
   get_it: ^7.6.4
 
 dev_dependencies:

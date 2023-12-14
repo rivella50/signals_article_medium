@@ -4,9 +4,9 @@ import 'package:signals_article/utils/decorated_container.dart';
 
 class PostWidget extends StatelessWidget {
   const PostWidget({
-    Key? key,
+    super.key,
     required this.post,
-  }) : super(key: key);
+  });
 
   final Post post;
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:signals/signals_flutter.dart';
-import 'package:signals_article/feature/posts/domain/post.dart';
 import 'package:signals_article/feature/posts/presentation/posts_controller.dart';
 import 'package:signals_article/main.dart';
 
@@ -50,6 +49,10 @@ class PostsStreamWidget extends StatelessWidget {
               reloading: () {
                 print('reloading');
                 return const CircularProgressIndicator(color: Colors.red,);
+              },
+              refreshing: () {
+                print('refreshing');
+                return const CircularProgressIndicator(color: Colors.orange,);
               },
             ),
           ),
