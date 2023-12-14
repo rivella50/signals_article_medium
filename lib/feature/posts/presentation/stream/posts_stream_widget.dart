@@ -17,10 +17,7 @@ class PostsStreamWidget extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(45),
               ),
-              onPressed: () =>
-                  //getIt.get<PostsController>().postsStreamSignal.value != null
-                  //  ? null
-                controller.startPostsStream(),
+              onPressed: () => controller.startPostsStream(),
               child: const Text('Start Posts Stream')),
           const SizedBox(
             height: 20,
@@ -30,7 +27,7 @@ class PostsStreamWidget extends StatelessWidget {
               data: (value) {
                 print('value:$value');
                 return Text(
-                  value!.title!,
+                  value.title!,
                   style: Theme.of(context).textTheme.headlineMedium!,
                 );
               },
@@ -44,15 +41,18 @@ class PostsStreamWidget extends StatelessWidget {
               loading: () {
                 print('loading');
                 return const CircularProgressIndicator();
-                //return const SizedBox.shrink();
               },
               reloading: () {
                 print('reloading');
-                return const CircularProgressIndicator(color: Colors.red,);
+                return const CircularProgressIndicator(
+                  color: Colors.red,
+                );
               },
               refreshing: () {
                 print('refreshing');
-                return const CircularProgressIndicator(color: Colors.orange,);
+                return const CircularProgressIndicator(
+                  color: Colors.orange,
+                );
               },
             ),
           ),

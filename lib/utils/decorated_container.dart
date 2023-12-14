@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class DecoratedContainer extends StatelessWidget {
   DecoratedContainer({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   Widget child;
 

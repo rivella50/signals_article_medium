@@ -12,8 +12,7 @@ class ApiException implements Exception {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ApiException &&
-        other.message == message;
+    return other is ApiException && other.message == message;
   }
 
   @override
@@ -21,41 +20,41 @@ class ApiException implements Exception {
 }
 
 class BadRequestException extends ApiException {
-  BadRequestException({String? message}) : super(message: message);
+  BadRequestException({super.message});
 }
 
 class UnauthorizedException extends ApiException {
-  UnauthorizedException({String? message}) : super(message: message);
+  UnauthorizedException({super.message});
 }
 
 class ForbiddenException extends ApiException {
-  ForbiddenException({String? message}) : super(message: message);
+  ForbiddenException({super.message});
 }
 
 class NotFoundException extends ApiException {
-  NotFoundException({String? message}) : super(message: message);
+  NotFoundException({super.message});
 }
 
 class ConflictException extends ApiException {
-  ConflictException({String? message}) : super(message: message);
+  ConflictException({super.message});
 }
 
 class InternalServerErrorException extends ApiException {
-  InternalServerErrorException({String? message}) : super(message: message);
+  InternalServerErrorException({super.message});
 }
 
 class BadGatewayException extends ApiException {
-  BadGatewayException({String? message}) : super(message: message);
+  BadGatewayException({super.message});
 }
 
 class ServiceUnavailableException extends ApiException {
-  ServiceUnavailableException({String? message}) : super(message: message);
+  ServiceUnavailableException({super.message});
 }
 
 class ApiErrorHandler {
   static ApiException handleError(error) {
     // I usually use Dio package for networking. If you use Http, you have to change here to HttpError
-    if (error is DioError) {
+    if (error is DioException) {
       final e = error.response;
       switch (e?.statusCode) {
         case 400:

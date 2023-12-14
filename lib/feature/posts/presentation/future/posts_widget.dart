@@ -19,19 +19,21 @@ class PostsWidget extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(45),
               ),
-              onPressed:
-                  getIt.get<PostsController>().postsSignal.value is AsyncSignalStateLoading
-                      ? null
-                      : () => getIt.get<PostsController>().getPosts(),
+              onPressed: getIt.get<PostsController>().postsSignal.value
+                      is AsyncSignalStateLoading
+                  ? null
+                  : () => getIt.get<PostsController>().getPosts(),
               child: const Text('Load Posts')),
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           switch (getIt.get<PostsController>().postsSignal.watch(context)) {
             AsyncSignalStateData<dynamic>(value: final list) => PostsList(
                 posts: list,
               ),
             AsyncSignalStateError(error: final e) => Text(
-              e.toString(),
-            ),
+                e.toString(),
+              ),
             _ => const CircularProgressIndicator(),
           }
         ],
