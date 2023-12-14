@@ -11,7 +11,8 @@ class PostsController {
 
   final postsSignal = signal<AsyncValue>(AsyncData(<Post>[]));
   
-  AsyncSignal<Post?> postsStreamSignal = asyncSignalFromStream( () => const Stream<Post?>.empty(), initialValue: null);
+  //AsyncSignal<Post?> postsStreamSignal = asyncSignalFromStream( () => const Stream<Post?>.empty(), initialValue: null);
+  final postsStreamSignal = StreamSignal<Post?>();
 
   Future<void> getPosts() async {
     postsSignal.value = AsyncLoading();
@@ -23,5 +24,6 @@ class PostsController {
   
   void startPostsStream() {
     postsStreamSignal.resetStream(() => PostsRepository().getPostsStream(5));
+    //postsStreamSignal = asyncSignalFromStream( () => PostsRepository().getPostsStream(5), initialValue: null);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:signals/signals_flutter.dart';
+import 'package:signals_article/feature/posts/domain/post.dart';
 import 'package:signals_article/feature/posts/presentation/posts_controller.dart';
 import 'package:signals_article/main.dart';
 
@@ -26,15 +27,15 @@ class PostsStreamWidget extends StatelessWidget {
             height: 20,
           ),
           Watch(
-            (context) => controller.postsStreamSignal.map(
-              value: (value) {
+            (context) => controller.postsStreamSignal.value.map(
+              data: (value) {
                 print('value:$value');
                 return Text(
                   value!.title!,
                   style: Theme.of(context).textTheme.headlineMedium!,
                 );
               },
-              error: (error) {
+              error: (error, _) {
                 print('error:$error');
                 return Text(
                   'error:$error',
@@ -46,7 +47,7 @@ class PostsStreamWidget extends StatelessWidget {
                 return const CircularProgressIndicator();
                 //return const SizedBox.shrink();
               },
-              reloading: (val) {
+              reloading: () {
                 print('reloading');
                 return const CircularProgressIndicator(color: Colors.red,);
               },
