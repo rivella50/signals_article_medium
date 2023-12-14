@@ -20,7 +20,7 @@ class PostsWidget extends StatelessWidget {
                 minimumSize: const Size.fromHeight(45),
               ),
               onPressed: getIt.get<PostsController>().postsSignal.value
-                      is AsyncSignalStateLoading
+                      is AsyncLoading
                   ? null
                   : () => getIt.get<PostsController>().getPosts(),
               child: const Text('Load Posts')),
@@ -28,10 +28,10 @@ class PostsWidget extends StatelessWidget {
             height: 20,
           ),
           switch (getIt.get<PostsController>().postsSignal.watch(context)) {
-            AsyncSignalStateData<dynamic>(value: final list) => PostsList(
+            AsyncData<dynamic>(value: final list) => PostsList(
                 posts: list,
               ),
-            AsyncSignalStateError(error: final e) => Text(
+            AsyncError(error: final e) => Text(
                 e.toString(),
               ),
             _ => const CircularProgressIndicator(),
