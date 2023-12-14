@@ -11,6 +11,16 @@ class PostsController {
 
   final postsStreamSignal = StreamSignal<Post>();
 
+  final loggedIn = signal(true);
+
+  PostsController() {
+    effect(() {
+      if (!loggedIn.value) {
+        postsStreamSignal.reset();
+      }
+    });
+  }
+
   Future<void> getPosts() async {
     postsSignal.value = AsyncLoading();
     final result = await postService.getUnevenPosts();
@@ -20,6 +30,11 @@ class PostsController {
   }
 
   void startPostsStream() {
+    loggedIn.value = true;
     postsStreamSignal.resetStream(PostsRepository().getPostsStream(5));
+  }
+
+  void changeLoginStatus(bool newStatus) {
+    loggedIn.value = newStatus;
   }
 }

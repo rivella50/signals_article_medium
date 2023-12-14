@@ -13,43 +13,54 @@ class PostsStreamWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size.fromHeight(45),
+          Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(45),
+                    ),
+                    onPressed: () => controller.startPostsStream(),
+                    child: const Text('Start Posts Stream')),
               ),
-              onPressed: () => controller.startPostsStream(),
-              child: const Text('Start Posts Stream')),
+              Watch((_) {
+                return Expanded(
+                  child: SwitchListTile(
+                    title: const Text('Is Logged In'),
+                    value: controller.loggedIn.value,
+                    onChanged: (value) => controller.changeLoginStatus(!controller.loggedIn.value),
+                  ),
+                );
+              }),
+            ],
+          ),
           const SizedBox(
             height: 20,
           ),
           Watch(
             (context) => controller.postsStreamSignal.value.map(
               data: (value) {
-                print('value:$value');
                 return Text(
                   value.title!,
                   style: Theme.of(context).textTheme.headlineMedium!,
                 );
               },
               error: (error, _) {
-                print('error:$error');
                 return Text(
                   'error:$error',
                   style: Theme.of(context).textTheme.headlineMedium!,
                 );
               },
               loading: () {
-                print('loading');
                 return const CircularProgressIndicator();
               },
               reloading: () {
-                print('reloading');
                 return const CircularProgressIndicator(
                   color: Colors.red,
                 );
               },
               refreshing: () {
-                print('refreshing');
                 return const CircularProgressIndicator(
                   color: Colors.orange,
                 );
