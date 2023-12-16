@@ -46,3 +46,4 @@ app.*.map.json
 .fvm/
 pubspec.lock
 /doc/
+devtools_options.yaml

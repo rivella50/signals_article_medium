@@ -32,7 +32,7 @@ class PostsStreamWidget extends StatelessWidget {
                     onChanged: (value) => controller.changeLoginStatus(!controller.loggedIn.value),
                   ),
                 );
-              }),
+              }, debugLabel: 'loggedIn Watch'),
             ],
           ),
           const SizedBox(
@@ -65,7 +65,7 @@ class PostsStreamWidget extends StatelessWidget {
                   color: Colors.orange,
                 );
               },
-            ),
+            ), debugLabel: 'postsStreamSignal Watch'
           ),
         ],
       ),

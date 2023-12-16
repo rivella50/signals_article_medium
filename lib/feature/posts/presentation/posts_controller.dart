@@ -7,18 +7,24 @@ class PostsController {
   final PostsService postService = PostsService();
 
   final postsSignal =
-      signal<AsyncState<List<Post>>>(AsyncData(<Post>[]));
+      signal<AsyncState<List<Post>>>(AsyncData(<Post>[]), debugLabel: 'posts Signal');
 
-  final postsStreamSignal = StreamSignal<Post>();
+  final postsStreamSignal = StreamSignal<Post>(debugLabel: 'posts stream Signal');
 
-  final loggedIn = signal(true);
+  final loggedIn = signal(true, debugLabel: 'loggedIn Signal');
 
   PostsController() {
     effect(() {
       if (!loggedIn.value) {
         postsStreamSignal.reset();
       }
-    });
+    }, debugLabel: 'loggedIn Effect');
+  }
+
+  void reset() {
+    postsSignal.value = AsyncData([]);
+    loggedIn.value = true;
+    postsStreamSignal.reset();
   }
 
   Future<void> getPosts() async {
