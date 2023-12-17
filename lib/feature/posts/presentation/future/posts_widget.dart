@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:signals/signals_flutter.dart';
-import 'package:signals_article/feature/posts/presentation/posts_controller.dart';
+import 'package:signals_article/feature/posts/presentation/future/posts_future_controller.dart';
 import 'package:signals_article/feature/posts/presentation/future/posts_list.dart';
 import 'package:signals_article/main.dart';
 
@@ -11,6 +11,7 @@ class PostsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = getIt.get<PostsFutureController>();
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -19,15 +20,15 @@ class PostsWidget extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(45),
               ),
-              onPressed: getIt.get<PostsController>().postsSignal.value
+              onPressed: controller.postsSignal.value
                       is AsyncLoading
                   ? null
-                  : () => getIt.get<PostsController>().getPosts(),
+                  : () => controller.getPosts(),
               child: const Text('Load Posts')),
           const SizedBox(
             height: 20,
           ),
-          switch (getIt.get<PostsController>().postsSignal.watch(context)) {
+          switch (controller.postsSignal.watch(context)) {
             AsyncData<dynamic>(value: final list) => PostsList(
                 posts: list,
               ),

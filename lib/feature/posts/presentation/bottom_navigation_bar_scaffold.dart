@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:signals_article/config/routes.dart';
-import 'package:signals_article/feature/posts/presentation/posts_controller.dart';
+import 'package:signals_article/feature/posts/presentation/future/posts_future_controller.dart';
+import 'package:signals_article/feature/posts/presentation/stream/posts_stream_controller.dart';
 import 'package:signals_article/main.dart';
 
 class BottomNavigationBarScaffold extends StatefulWidget {
@@ -42,12 +43,13 @@ class _BottomNavigationBarScaffoldState
     if (index == currentIndex) {
       return;
     }
-    getIt.resetLazySingleton<PostsController>();
     switch (index) {
       case 0:
+        getIt.resetLazySingleton<PostsStreamController>();
         context.go(pathFuture);
         break;
       case 1:
+        getIt.resetLazySingleton<PostsFutureController>();
         context.go(pathStream);
         break;
     }

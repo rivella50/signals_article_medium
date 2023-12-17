@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:signals_article/config/routes.dart';
-import 'package:signals_article/feature/posts/presentation/posts_controller.dart';
+import 'package:signals_article/feature/posts/presentation/future/posts_future_controller.dart';
+import 'package:signals_article/feature/posts/presentation/stream/posts_stream_controller.dart';
 
 final getIt = GetIt.instance;
 
@@ -11,8 +12,11 @@ void main() {
 }
 
 void setup() {
-  getIt.registerLazySingleton<PostsController>(() =>
-    PostsController(),
+  getIt.registerLazySingleton<PostsFutureController>(() =>
+      PostsFutureController(),
+  );
+  getIt.registerLazySingleton<PostsStreamController>(() =>
+      PostsStreamController(),
   );
 }
 

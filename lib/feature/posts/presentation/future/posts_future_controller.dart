@@ -3,7 +3,7 @@ import 'package:signals_article/feature/posts/application/posts_service.dart';
 import 'package:signals_article/feature/posts/data/posts_repository.dart';
 import 'package:signals_article/feature/posts/domain/post.dart';
 
-class PostsController {
+class PostsFutureController {
   final PostsService postService = PostsService();
 
   final postsSignal =
@@ -13,7 +13,7 @@ class PostsController {
 
   final loggedIn = signal(true, debugLabel: 'loggedIn Signal');
 
-  PostsController() {
+  PostsFutureController() {
     effect(() {
       if (!loggedIn.value) {
         postsStreamSignal.reset();

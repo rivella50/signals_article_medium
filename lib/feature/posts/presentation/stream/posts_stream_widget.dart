@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:signals/signals_flutter.dart';
-import 'package:signals_article/feature/posts/presentation/posts_controller.dart';
+import 'package:signals_article/feature/posts/presentation/stream/posts_stream_controller.dart';
 import 'package:signals_article/main.dart';
 
 class PostsStreamWidget extends StatelessWidget {
@@ -8,7 +8,7 @@ class PostsStreamWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = getIt.get<PostsController>();
+    final controller = getIt.get<PostsStreamController>();
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
