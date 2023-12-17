@@ -42,7 +42,7 @@ class _BottomNavigationBarScaffoldState
     if (index == currentIndex) {
       return;
     }
-    getIt.get<PostsController>().reset();
+    getIt.resetLazySingleton<PostsController>();
     switch (index) {
       case 0:
         context.go(pathFuture);

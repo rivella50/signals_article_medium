@@ -21,12 +21,6 @@ class PostsController {
     }, debugLabel: 'loggedIn Effect');
   }
 
-  void reset() {
-    postsSignal.value = AsyncData([]);
-    loggedIn.value = true;
-    postsStreamSignal.reset();
-  }
-
   Future<void> getPosts() async {
     postsSignal.value = AsyncLoading();
     final result = await postService.getUnevenPosts();

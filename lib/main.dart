@@ -11,7 +11,7 @@ void main() {
 }
 
 void setup() {
-  getIt.registerSingleton<PostsController>(
+  getIt.registerLazySingleton<PostsController>(() =>
     PostsController(),
   );
 }
