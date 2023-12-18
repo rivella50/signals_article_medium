@@ -13,10 +13,10 @@ void main() {
 
 void setup() {
   getIt.registerLazySingleton<PostsFutureController>(() =>
-      PostsFutureController(),
+      PostsFutureController(), dispose: (c) => c.dispose(),
   );
   getIt.registerLazySingleton<PostsStreamController>(() =>
-      PostsStreamController(),
+      PostsStreamController(), dispose: (c) => c.dispose(),
   );
 }
 

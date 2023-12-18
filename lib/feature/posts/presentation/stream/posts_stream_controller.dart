@@ -7,12 +7,20 @@ class PostsStreamController {
 
   final loggedIn = signal(true, debugLabel: 'loggedIn Signal');
 
+  late final Function disposeEffect;
+
   PostsStreamController() {
-    effect(() {
+    disposeEffect = effect(() {
       if (!loggedIn.value) {
         postsStreamSignal.reset();
       }
     }, debugLabel: 'loggedIn Effect');
+  }
+
+  void dispose() {
+    disposeEffect();
+    postsStreamSignal.dispose();
+    loggedIn.dispose();
   }
 
   void startPostsStream() {
